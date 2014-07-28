@@ -1,7 +1,15 @@
-Ranker
+TeXRank
 ======
+Software package for ranking and viewing crystallization drops. 
 
-Algorithm for ranking crystallization droplets
+TeXRank consists of 2 components, Ranker - the algorithm for ranking droplets, and Viewer, the GUI for viewing droplets in the ranked order, and ideally integrated with your database and imaging infrastructure. 
+
+
+=====
+
+Ranker
+
+=====
 
 Download and run Ranker_pkg.exe for the complete package, which includes Ranker.exe, some example background image files, and input file required. 
 
@@ -57,4 +65,12 @@ Input 3: “BackgroundImage1.mat, BackgroundImage2.mat, BackgroundImage3.mat”
 		-	BackgroundIm{1} = uint8, 96-by-128 matrix of grey-level average of similar empty sub wells.
 			BackgroundIm{2} = logical mask of BackgroundIm{1}, where regions inside the well is true, and false outside the well. 
 	• If multiple background images are required (ie more than 1 sub well), separate each path with a comma and enclose all in double quotes. 
+
+
+========
+
+Viewer
+
+========
+An API is being developed, although a running version for the SGC is now available to modify. Email me (jiatsing.ng_at_dtc.ox.ac.uk) if you'd like the code for this. 
 
