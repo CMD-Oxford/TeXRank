@@ -4,7 +4,7 @@ To build Ranker with deploytool,
   Main File: FD_TFG_HourlyInspection_Console.m
 
   Shared Resources and Helper Files:
-    All other .m files in /Source Code
+    All other .m files in Source Code/Ranker
     TextonDictionaryForRanker.mat
     /MatFiles
     TreeBagger.m (which can be found in WhereYouInstalledMATLAB\MATLAB\RXXXXx\toolbox\stats\stats\@TreeBagger\ja) AND
