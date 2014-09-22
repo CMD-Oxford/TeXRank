@@ -1,4 +1,4 @@
-TeXRank
+# TeXRank
 ======
 Software package for ranking and viewing crystallization drops. 
 
@@ -7,7 +7,7 @@ TeXRank consists of 2 components, Ranker - the algorithm for ranking droplets, a
 
 =====
 
-Ranker
+## Ranker
 
 =====
 
@@ -23,13 +23,13 @@ All files required to build Ranker.exe yourself are in the "Source Code" folder.
 
 To use Ranker.exe, cd to the directory where Ranker.exe is stored. 
 
-Usage: 
+### Usage: 
 
     Ranker.exe FilePaths.txt OutputFileName “BackgroundImage1.mat, BackgroundImage2.mat, BackgroundImage3.mat”
 
 -----
 
-Input 1: FilePaths.txt
+#### Input 1: FilePaths.txt
 * Text file with file paths to all the images to be processed, typically but not limited to all images from a plate/layer.
   *Use absolute paths (unless you’re sure your relative file paths work!)
   *Each file path should be on a new line.
@@ -37,7 +37,7 @@ Input 1: FilePaths.txt
   
 -----
   
-Input 2: OutputFileName 
+#### Input 2: OutputFileName 
 * Desired output file name, absolute or relative file path.
 * 2 output files will be produced:
   * OutputFileName_TextonDist.mat: Matlab file
@@ -58,7 +58,7 @@ Input 2: OutputFileName
 			
 ------
 
-Input 3: “BackgroundImage1.mat, BackgroundImage2.mat, BackgroundImage3.mat”
+#### Input 3: “BackgroundImage1.mat, BackgroundImage2.mat, BackgroundImage3.mat”
   * Paths to background images required. 
   * Background images should be generated with the tool provided (GenerateBackgroundIm.exe), or conforms to the following format:
     * Variable name: BackgroundIm
@@ -70,7 +70,7 @@ Input 3: “BackgroundImage1.mat, BackgroundImage2.mat, BackgroundImage3.mat”
 
 ========
 
-Viewer
+## Viewer
 
 ========
 An API is being developed, although a running version for the SGC is now available to modify. Email me (jiatsing.ng_at_dtc.ox.ac.uk) if you'd like the code for this. 
