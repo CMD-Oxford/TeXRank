@@ -9,7 +9,7 @@ TeXRank consists of 2 components, Ranker - the algorithm for ranking droplets, a
 
 ## Ranker
 
-=====
+
 
 Download and run Ranker_pkg.exe for the complete package, which includes Ranker.exe, some example background image files, and input file required. 
 
@@ -19,7 +19,7 @@ We have also provided a helper app - GenerateBackgroundIm - to help you produce 
 
 All files required to build Ranker.exe yourself are in the "Source Code" folder.
 
-=======================================================================================
+
 
 To use Ranker.exe, cd to the directory where Ranker.exe is stored. 
 
@@ -72,6 +72,5 @@ To use Ranker.exe, cd to the directory where Ranker.exe is stored.
 
 ## Viewer
 
-========
 An API is being developed, although a running version for the SGC is now available to modify. Email me (jiatsing.ng_at_dtc.ox.ac.uk) if you'd like the code for this. 
 
