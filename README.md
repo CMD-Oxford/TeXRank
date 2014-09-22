@@ -1,5 +1,5 @@
 # TeXRank
-======
+-----
 Software package for ranking and viewing crystallization drops. 
 
 TeXRank consists of 2 components, Ranker - the algorithm for ranking droplets, and Viewer, the GUI for viewing droplets in the ranked order, and ideally integrated with your database and imaging infrastructure. 
