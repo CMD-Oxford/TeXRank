@@ -74,3 +74,7 @@ To use Ranker.exe, cd to the directory where Ranker.exe is stored.
 
 An API is being developed, although a running version for the SGC is now available to modify. Email me (jiatsing.ng_at_dtc.ox.ac.uk) if you'd like the code for this. 
 
+## Publication
+For full details, please see our [paper](http://journals.iucr.org/d/issues/2014/10/00/nj5198/nj5198bdy.html),  
+Ng, J. T., Dekker, C., Kroemer, M., Osborne, M. & von Delft, F. (2014). Acta Cryst. D70, 2702-2718.
+
