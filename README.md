@@ -25,7 +25,7 @@ To use Ranker.exe, cd to the directory where Ranker.exe is stored.
 
 ### Usage: 
 
-    Ranker.exe FilePaths.txt OutputFileName “BackgroundImage1.mat, BackgroundImage2.mat, BackgroundImage3.mat”
+    Ranker.exe FilePaths.txt PlateBarcodeID “BackgroundImage1.mat, BackgroundImage2.mat, BackgroundImage3.mat”
 
 -----
 
@@ -37,10 +37,10 @@ To use Ranker.exe, cd to the directory where Ranker.exe is stored.
   
 -----
   
-#### Input 2: OutputFileName 
-* Desired output file name, absolute or relative file path.
+#### Input 2: PlateBarcodeID
+* Barcode of plate - will be used in TeXRankO
 * 2 output files will be produced:
-  * OutputFileName_TextonDist.mat: Matlab file
+  * PlateBarcodeID.mat: Matlab file
     * Variable name: TextonFeatures
     * Variable Type: 1-by-6 cell
     * TextonFeatures{1} = file path, 
@@ -70,9 +70,11 @@ To use Ranker.exe, cd to the directory where Ranker.exe is stored.
 
 ========
 
-## Viewer
+## Viewer - TeXRankO
 
-An API is being developed, although a running version for the SGC is now available to modify. Email me (jiatsing.ng_at_dtc.ox.ac.uk) if you'd like the code for this. 
+Offline version of TeXRank deployed at the SGC/Novartis, Basel.
+This requires no database connection, and uses the output of Ranker.exe. 
+Please note the file structure required, which is stated in the ReadMe file. 
 
 ## Publication
 For full details, please see our [paper](http://journals.iucr.org/d/issues/2014/10/00/nj5198/nj5198bdy.html),  
