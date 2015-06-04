@@ -8,10 +8,12 @@ To build Viewer with deploytool,
     Subwelltext.mat
     ojdbc5.jar (or whichever your database uses).
     The following folders:
-        PrecPatternLibrary
+        PrecPatternLibrary *
         CondDicts
         IndividualProfiles
         MatFiles
+
+* Due to the file sizes, they can't be uploaded on GitHub, please contact me for these. These files are only required for the screen analysis function. Everything else should still work fine without them. 
 
   TeXRankO.exe should be placed in the same folder as Ranker.exe and the following folders:
     Data\      -> Folder containing output .mat files from Ranker.exe. 
