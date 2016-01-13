@@ -1,5 +1,5 @@
 function varargout = CrystallizationProfileFromNearestNeighbours(varargin)
-% Last Modified by GUIDE v2.5 03-Jun-2015 11:40:00
+% Last Modified by GUIDE v2.5 13-Jan-2016 13:06:38
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -123,6 +123,11 @@ ScreenID = ScreenID{get(handles.ScreenID, 'Value')};
 if strcmp(ScreenID, 'Please Select:')
     errordlg('Please select one of these screens.', 'Select Screen');
 end
+ScreenTemperature = get(handles.Temperature, 'String');
+ScreenTemperature = ScreenTemperature{get(handles.Temperature, 'Value')};
+if strcmp(ScreenTemperature, 'Please Select:')
+    errordlg('Please select one of the temperatures.', 'Select Screen');
+end
 Subwell1 = get(handles.Subwell1, 'String');
 Subwell1 = Subwell1{get(handles.Subwell1, 'Value')};
 if strcmp(Subwell1, 'Please Select:')
@@ -195,13 +200,18 @@ else
     
     set(handles.Status, 'String', 'Loading reference libraries...');
     drawnow();
+    
+ 
+    % The github repository has an empty PrecPatternLibrary folder. The
+    % files are too large to upload here, so please contact the authors for
+    % the libraries and place them here when you run the code. 
     if strcmp(handles.SelectedScreen, 'JCSG')
-        load(['PrecPatternLibrary\' handles.SelectedScreen '_4_Hellinger_TextonFeatures1.mat']);
-        load(['PrecPatternLibrary\' handles.SelectedScreen '_4_Hellinger_TextonFeatures2.mat']);
+        load(['PrecPatternLibrary\' handles.SelectedScreen '_' num2str(ScreenTemperature) '_Hellinger_TextonFeature1.mat']);
+        load(['PrecPatternLibrary\' handles.SelectedScreen '_' num2str(ScreenTemperature) '_Hellinger_TextonFeature2.mat']);
         ReferenceFeatures = [TextonFeatures1; TextonFeatures2];
         clear TextonFeatures1 TextonFeatures2;
     else
-        load(['PrecPatternLibrary\' handles.SelectedScreen '_4_Hellinger_TextonFeature.mat']);
+        load(['PrecPatternLibrary\' handles.SelectedScreen '_' num2str(ScreenTemperature) '_Hellinger_TextonFeature.mat']);
         ReferenceFeatures = TextonFeatures;
         clear TextonFeatures;
     end
@@ -238,7 +248,7 @@ else
     handles.DistancesToReferences = d(id(1:NumNearestNeighbours));
     
     % plot profile
-    load(['IndividualProfiles\' handles.SelectedScreen '_4_Individual_XQual_TreeOrder.mat']); % variable name:Profiles
+    load(['IndividualProfiles\' handles.SelectedScreen '_' num2str(ScreenTemperature) '_Individual_XQual_TreeOrder.mat']); % variable name:Profiles
     handles.Top50Profiles = Profiles(handles.NNIDs,:); clear IndividualProfiles;
    
     % by default, look at 10 closest neighbours
@@ -345,7 +355,7 @@ else
 %                 'inner join "SGC"."XTAL_SCREENBATCH" T3 on T2."PKEY" = T3."SGCXTALSCREENID_PKEY" inner join '...
 %                 '"SGC"."XTAL_PLATES" T1 on T3."PKEY" = T1."SGCXTALSCREENBATCH_PKEY" and T1."CONCENTRATRION" '...
 %                 '> ' num2str(str2double(data{SelectedCell(1),8})-0.1) ' and T1."CONCENTRATRION" < ' num2str(str2double(data{SelectedCell(1),8})+0.1) ' and '...
-%                 'T1."TEMPERATURE" = ' data{SelectedCell(1),5} ' inner join "SGC"."PURIFICATION" T6 on T6."PKEY" '...
+%                 'T1."TEMPERATURETXT" = ' data{SelectedCell(1),5} ' inner join "SGC"."PURIFICATION" T6 on T6."PKEY" '...
 %                 '= T1."SGCPURIFICATION_PKEY" and upper(T6."PURIFICATIONID") = ''' upper(data{SelectedCell(1),4}) ''' inner join '...
 %                 '"SGC"."V_COMPOUND_XTALPLATE2" T4 on T4."PKEY" = T1."SGCCOMPOUND_PKEY2" and upper(T4."COMPOUND_ID") '...
 %                 '= ''' upper(data{SelectedCell(1),7}) ''' inner join "SGC"."V_COMPOUND_XTALPLATE" T5 on T5."PKEY" = '...
@@ -417,7 +427,7 @@ else
 %             'inner join "SGC"."XTAL_SCREENBATCH" T3 on T2."PKEY" = T3."SGCXTALSCREENID_PKEY" inner join '...
 %             '"SGC"."XTAL_PLATES" T1 on T3."PKEY" = T1."SGCXTALSCREENBATCH_PKEY" and T1."CONCENTRATRION" '...
 %             '> ' num2str(str2double(data{SelectedCell(1),8})-0.1) ' and T1."CONCENTRATRION" < ' num2str(str2double(data{SelectedCell(1),8})+0.1) ' and '...
-%             'T1."TEMPERATURE" = ' data{SelectedCell(1),5} ' inner join "SGC"."PURIFICATION" T6 on T6."PKEY" '...
+%             'T1."TEMPERATURETXT" = ' data{SelectedCell(1),5} ' inner join "SGC"."PURIFICATION" T6 on T6."PKEY" '...
 %             '= T1."SGCPURIFICATION_PKEY" and upper(T6."PURIFICATIONID") = ''' upper(data{SelectedCell(1),4}) ''' inner join '...
 %             '"SGC"."V_COMPOUND_XTALPLATE2" T4 on T4."PKEY" = T1."SGCCOMPOUND_PKEY2" and upper(T4."COMPOUND_ID") '...
 %             '= ''' upper(data{SelectedCell(1),7}) ''' inner join "SGC"."V_COMPOUND_XTALPLATE" T5 on T5."PKEY" = '...
@@ -729,6 +739,9 @@ guidata(hObject, handles);
 function ScreenID_Callback(hObject, eventdata, handles)
 
 
+% --- Executes on selection change in TemperatureTxt.
+function Temperature_Callback(hObject, eventdata, handles)
+
 % --- Executes on selection change in Subwell1.
 function Subwell1_Callback(hObject, eventdata, handles)
 set(handles.Subwell2, 'Enable', 'On');
@@ -957,7 +970,7 @@ function ConditionsTable_CellSelectionCallback(hObject, eventdata, handles)
 %             'inner join "SGC"."XTAL_SCREENBATCH" T3 on T2."PKEY" = T3."SGCXTALSCREENID_PKEY" inner join '...
 %             '"SGC"."XTAL_PLATES" T1 on T3."PKEY" = T1."SGCXTALSCREENBATCH_PKEY" and T1."CONCENTRATRION" '...
 %             '> ' num2str(str2double(SummaryData{8})-0.1) ' and T1."CONCENTRATRION" < ' num2str(str2double(SummaryData{8})+0.1) ' and '...
-%             'T1."TEMPERATURE" = ' SummaryData{5} ' inner join "SGC"."PURIFICATION" T6 on T6."PKEY" '...
+%             'T1."TEMPERATURETXT" = ' SummaryData{5} ' inner join "SGC"."PURIFICATION" T6 on T6."PKEY" '...
 %             '= T1."SGCPURIFICATION_PKEY" and upper(T6."PURIFICATIONID") = ''' upper(SummaryData{4}) ''' inner join '...
 %             '"SGC"."V_COMPOUND_XTALPLATE2" T4 on T4."PKEY" = T1."SGCCOMPOUND_PKEY2" and upper(T4."COMPOUND_ID") '...
 %             '= ''' upper(SummaryData{7}) ''' inner join "SGC"."V_COMPOUND_XTALPLATE" T5 on T5."PKEY" = '...
@@ -1014,3 +1027,10 @@ function BarcodeInput_CreateFcn(hObject, eventdata, handles)
 % if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
 %     set(hObject,'BackgroundColor','white');
 % end
+
+
+% --- Executes during object creation, after setting all properties.
+function TemperatureTxt_CreateFcn(hObject, eventdata, handles)
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
