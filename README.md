@@ -76,6 +76,10 @@ Offline version of TeXRank deployed at the SGC/Novartis, Basel.
 This requires no database connection, and uses the output of Ranker.exe. 
 Please note the file structure required, which is stated in the ReadMe file. 
 
+For the screen analysis portion, the precipitation fingerprint libraries are required and can be downloaded from 
+https://zenodo.org/record/44667#.VpZjXfmLR3g. 
+
+
 ## Publication
 For full details, please see our [paper](http://journals.iucr.org/d/issues/2014/10/00/nj5198/nj5198bdy.html),  
 Ng, J. T., Dekker, C., Kroemer, M., Osborne, M. & von Delft, F. (2014). Acta Cryst. D70, 2702-2718.
